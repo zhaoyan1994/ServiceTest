@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean isFroground = false;
     private TimeClockReceiver timeClockReceiver;
 
     @Override
@@ -24,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
         Intent serviceIntent = new Intent(MainActivity.this, TargetService.class);
         startService(serviceIntent);
 
-        timeClockReceiver = new TimeClockReceiver(this);
-        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_TIME_TICK);
-        registerReceiver(timeClockReceiver, intentFilter);
+//        timeClockReceiver = new TimeClockReceiver(this);
+//        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_TIME_TICK);
+//        registerReceiver(timeClockReceiver, intentFilter);
     }
 
     @Override
@@ -41,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        isFroground = true;
         super.onResume();
     }
 
@@ -52,19 +50,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        isFroground = false;
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        if (timeClockReceiver != null) {
-            unregisterReceiver(timeClockReceiver);
-        }
+//        if (timeClockReceiver != null) {
+//            unregisterReceiver(timeClockReceiver);
+//        }
         super.onDestroy();
-    }
-
-    public boolean getActivityIsForground(){
-        return isFroground;
     }
 }
