@@ -50,12 +50,13 @@ public class TargetService extends Service {
         if (Build.VERSION.SDK_INT >= 26) {
             String channelId = "myTestChannelId";
             NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            NotificationChannel channel = new NotificationChannel(channelId,"name",NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel(channelId,"name",NotificationManager.IMPORTANCE_MIN);
             manager.createNotificationChannel(channel);
 
             Notification.Builder builder = new Notification.Builder(this)
                     .setChannelId(channelId)
                     .setSmallIcon(R.drawable.ic_launcher)
+                    .setPriority(Notification.PRIORITY_MIN)
                     .setAutoCancel(true);
             Notification notification =  new Notification.InboxStyle(builder).build();
 
